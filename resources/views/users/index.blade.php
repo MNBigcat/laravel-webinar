@@ -27,17 +27,8 @@
                         <a href="{{ route('users.edit', ['user' => $user->id]) }}">Редактирование</a> &nbsp;
                         <!-- <a href="{{ route('users.destroy', ['user' => $user->id]) }}"></button>Удаление</button></a> -->
                         
-                        <button type="submit" class="btn btn-danger">Удаление</button>
-                        
+                        <button type="submit" class="btn btn-danger">Удаление</button>                      
                     </form>
-
-
-
-
-                    
-
-
-
                 </td>
             </tr>
         @empty
