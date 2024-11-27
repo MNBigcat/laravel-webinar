@@ -81,6 +81,7 @@ final class UserController extends Controller
     public function destroy(User $user): RedirectResponse
     {
         $user->delete();
+        
         return redirect()->route('users.index')->with('success', 'success');
     }
 }

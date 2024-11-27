@@ -35,7 +35,7 @@
     </a>
     <div id="users" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">            
-            <a class="collapse-item" href="buttons.html">{{__('Добавить нового')}}</a>
+            <a class="collapse-item" href="{{ route('users.create')}}">{{__('Добавить нового')}}</a>
             <a class="collapse-item" href="cards.html">{{__('Список')}}</a>
         </div>
     </div>

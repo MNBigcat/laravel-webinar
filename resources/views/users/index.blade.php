@@ -20,14 +20,24 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->created_at}}</td>
-                <td><a href="{{ route('users.edit', ['user' => $user->id]) }}">Редактирование</a> &nbsp;
+                <td>
+                    <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <a href="{{ route('users.edit', ['user' => $user->id]) }}">Редактирование</a> &nbsp;
+                        <!-- <a href="{{ route('users.destroy', ['user' => $user->id]) }}"></button>Удаление</button></a> -->
+                        
+                        <button type="submit" class="btn btn-danger">Удаление</button>
+                        
+                    </form>
 
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
 
 
-                    <a href="{{ route('users.destroy', ['user' => $user->id]) }}">Удаление</a>
+
+                    
+
+
+
                 </td>
             </tr>
         @empty
