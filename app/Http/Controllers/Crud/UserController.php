@@ -8,8 +8,8 @@ use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use App\Services\Contracts\CrudInterface;
 
 
 
@@ -28,21 +28,16 @@ final class UserController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(): View
-    {
+    {        
         return view('users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, CrudInterface $crud): RedirectResponse
     {
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->input('password'));
-
-        $user->save();
+        $crud->create($request->all());
         return redirect()->route('users.index')->with('success', 'success');
     }
 
@@ -65,23 +60,18 @@ final class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(Request $request, User $user, CrudInterface $crud): RedirectResponse
     {
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        // $user->password = Hash::make($request->input('password'));
-
-        $user->save();
+        $crud->update($user, $request->all());
         return redirect()->route('users.index')->with('success', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user): RedirectResponse
+    public function destroy(User $user, CrudInterface $crud): RedirectResponse
     {
-        $user->delete();
-        
+        $crud->delete($user);
         return redirect()->route('users.index')->with('success', 'success');
     }
 }
