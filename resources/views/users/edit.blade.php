@@ -6,6 +6,12 @@
 
 @section('content')
 <div class="m-12">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">{{ $error }}</div>
+        @endforeach
+    
+    @endif
     <form method="post" action="{{ route('users.update', ['user'=>$user])}}">
         @csrf
         @method('put')

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Services\Contracts\CrudInterface;
+use App\Http\Requests\Users\UpdateRequest;
 
 
 
@@ -28,7 +29,7 @@ final class UserController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(): View
-    {        
+    {
         return view('users.create');
     }
 
@@ -60,9 +61,16 @@ final class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user, CrudInterface $crud): RedirectResponse
+    public function update(UpdateRequest $request, User $user, CrudInterface $crud): RedirectResponse
     {
-        $crud->update($user, $request->all());
+        /*         
+            $request->validate([
+                    'name'=> ['required','string',''],
+                    'email'=> ['required','string','email'],
+                ])
+         */
+        
+        $crud->update($user, $request->validated());
         return redirect()->route('users.index')->with('success', 'success');
     }
 

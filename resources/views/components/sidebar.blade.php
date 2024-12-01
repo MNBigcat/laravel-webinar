@@ -27,7 +27,7 @@
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item @if(request()->is('users') || request()->is('users/*')) active  @endif">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#users"
         aria-expanded="true" aria-controls="users">
         <i class="fas fa-fw fa-users"></i>
