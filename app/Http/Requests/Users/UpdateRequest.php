@@ -22,14 +22,28 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string','min:2','max:50'],
-            'email'=> ['required','string','email','max:50'],
+            'name' => ['required', 'string', 'min:2', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:50'],
         ];
     }
 
-public function getName(string $name): string
-{
-    return $this->validated('name');
-}
+    public function messages(): array
+    {
+        return [
+            'name'=> 'Поле :attribute обязательно',   //00:52  зачем указал name.required?
+        ];
+    }
 
-} 
+    public function attributes(): array
+    {
+        return [
+            'name'=> '"Имя пользователя"',
+        ];
+    }
+
+    public function getName(string $name): string
+    {
+        return $this->validated('name');
+    }
+
+}

@@ -19,6 +19,7 @@
         <div class="form-group">
             <label for="name">{{ __('Имя пользователя') }}</label>
             <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+            @error('name') <strong>{{ $message }}</strong> @enderror
         </div>
         <div class="form-group">
             <label for="email">{{ __('E-mail пользователя') }}</label>
